@@ -1,0 +1,146 @@
+/* ========================================
+   TAILWIND CSS IMPORTS
+======================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
+:root {
+  --primary: #10B981;
+  --primary-dark: #059669;
+  --secondary: #0EA5E9;
+  --surface: #FFFFFF;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 font-sans min-h-screen overflow-x-hidden selection:bg-primary/20 selection:text-primary-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ========================================
+   CUSTOM SCROLLBAR (Modern & Minimal)
+======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ========================================
+   MODERN COMPONENT OVERRIDES
+======================================== */
+@layer components {
+  /* Cards */
+  .card {
+    @apply bg-white rounded-3xl p-6 sm:p-8 shadow-soft-xl border border-slate-100 transition-all duration-300;
+  }
+  .card:hover {
+    @apply shadow-glass -translate-y-1 border-primary/20;
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-glass border border-white;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-light text-white shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-0.5 focus:ring-primary;
+  }
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary to-secondary-light text-white shadow-lg shadow-secondary/30 hover:shadow-secondary/50 hover:-translate-y-0.5 focus:ring-secondary;
+  }
+  .btn-danger {
+    @apply bg-gradient-to-r from-danger to-red-400 text-white shadow-lg shadow-danger/30 hover:shadow-danger/50 hover:-translate-y-0.5 focus:ring-danger;
+  }
+  .btn-outline {
+    @apply border-2 border-slate-200 text-slate-700 bg-transparent hover:border-primary hover:text-primary hover:bg-primary/5 focus:ring-primary;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full px-5 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 placeholder-slate-400;
+  }
+  .label {
+    @apply block text-sm font-semibold text-slate-700 mb-2;
+  }
+}
+
+/* ========================================
+   LEAFLET MAP STYLES
+======================================== */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
+  font-family: inherit;
+  z-index: 10;
+}
+.leaflet-default-icon-path {
+  background-image: url('https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png');
+}
+
+/* ========================================
+   UTILITIES & ANIMATIONS
+======================================== */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-main-gradient;
+}
+
+.gradient-header {
+  @apply bg-main-gradient text-white p-8 rounded-3xl shadow-lg relative overflow-hidden;
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 0.8s linear infinite;
+}
+.spinner-primary {
+  border-color: rgba(16, 185, 129, 0.2);
+  border-top-color: #10B981;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
